@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student's Study Space</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div class="app-shell">
+
+    <!-- Brand panel (desktop only) -->
+    <aside class="brand-panel">
+        <div class="brand-content">
+            <span class="brand-logo">🎓</span>
+            <span class="brand-name">StudentHub</span>
+            <h1 class="brand-heading">Szab Bureau</h1>
+            <p class="brand-copy">Register, sign in and manage your assignments, timetables, notes with AI explanation — all in one place.</p>
+        </div>
+    </aside>
+
+    <!-- Form panel -->
+    <main class="form-panel">
+        <div class="form-panel-inner">
+
+            <header class="ledger-header">
+                <span class="eyebrow">SpringWeb · Szab Bureau</span>
+                <h2>Student's Study Space</h2>
+            </header>
+
+            <!-- Status Message Display -->
+            <div id="messageBox" class="message">System Ready</div>
+
+            <div class="cards-grid">
+
+                <!-- 2. Login (shown first — primary action) -->
+                <div class="card card-primary">
+                    <h3><span class="card-index">02</span><span class="card-icon">🔑</span>Login</h3>
+                    <input type="text" id="loginUser" placeholder="Username">
+                    <input type="password" id="loginPass" placeholder="Password">
+                    <button onclick="login()">Login</button>
+                </div>
+
+                <!-- 1. Register Account -->
+                <div class="card">
+                    <h3><span class="card-index">01</span><span class="card-icon">🪪</span>Register Account</h3>
+                    <input type="text" id="regUser" placeholder="Username">
+                    <input type="password" id="regPass" placeholder="Password">
+                    <button onclick="register()">Register</button>
+                </div>
+
+                <!-- 3. Update Password -->
+                <div class="card">
+                    <h3><span class="card-index">03</span><span class="card-icon">🔒</span>Update Password</h3>
+                    <input type="text" id="upUser" placeholder="Username">
+                    <input type="password" id="upPass" placeholder="Current Password">
+                    <input type="password" id="upNewPass" placeholder="New Password">
+                    <button onclick="updatePassword()">Update</button>
+                </div>
+
+                <!-- 4. Remove Account -->
+                <div class="card">
+                    <h3><span class="card-index">04</span><span class="card-icon">🗑️</span>Remove Account</h3>
+                    <input type="text" id="delUser" placeholder="Username">
+                    <input type="password" id="delPass" placeholder="Password">
+                    <button class="danger-btn" onclick="deleteAccount()">Remove</button>
+                </div>
+
+
+
+            </div>
+        </div>
+    </main>
+
+</div>
+
+<script th:src="@{/js/script.js}"></script>
+</body>
+</html>

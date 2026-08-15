@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Timetable</title>
+  <link rel="stylesheet" href="/css/dashboard.css">
+  <link rel="stylesheet" href="/css/timetable.css">
+</head>
+<body>
+
+<div class="dashboard-layout">
+
+  <!-- ============ SIDEBAR / NAVIGATION ============ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <span class="sidebar-logo">🎓</span>
+      <span class="sidebar-title">StudentHub</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <ul>
+        <li>
+          <a href="/dashboard" class="nav-link">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-text">Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a href="/dashboard#assignments-section" class="nav-link">
+            <span class="nav-icon">📝</span>
+            <span class="nav-text">Assignments</span>
+          </a>
+        </li>
+        <li>
+          <a href="/timetable" class="nav-link active">
+            <span class="nav-icon">🗓️</span>
+            <span class="nav-text">Timetable</span>
+          </a>
+        </li>
+        <li>
+          <a href="/notes" class="nav-link">
+            <span class="nav-icon">📁</span>
+            <span class="nav-text">Notes / Documents</span>
+          </a>
+        </li>
+        <li>
+          <a href="/ai-assistant" class="nav-link">
+            <span class="nav-icon">🤖</span>
+            <span class="nav-text">AI Assistant</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="sidebar-footer">
+      <button type="button" id="logoutBtn" class="logout-btn">
+        <span class="nav-icon">🚪</span>
+        <span class="nav-text">Logout</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- ============ MAIN CONTENT ============ -->
+  <div class="main-content">
+
+    <header class="topbar">
+      <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">☰</button>
+      <div class="topbar-right">
+        <div class="user-menu">
+          <button type="button" class="user-menu-trigger" id="userMenuTrigger" aria-haspopup="true" aria-expanded="false">
+            <span class="user-name" id="userName">Student</span>
+            <span class="user-avatar">👤</span>
+          </button>
+          <div class="user-menu-dropdown" id="userMenuDropdown">
+            <button type="button" id="topbarLogoutBtn" class="user-menu-logout-btn">
+              <span class="nav-icon">🚪</span>
+              <span>Logout</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="content-area">
+      <div class="section-header">
+        <h1 class="section-title">Timetable</h1>
+        <button type="button" class="primary-btn" id="addEntryBtn">+ Add Entry</button>
+      </div>
+      <p class="section-subtitle">Manage your weekly class schedule.</p>
+
+      <div id="timetableListContainer" class="timetable-list-container">
+        <p class="placeholder-text" id="timetableEmptyState">No timetable entries yet. Click "+ Add Entry" to create one.</p>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- Add / Edit Timetable Modal -->
+<div class="modal-overlay" id="timetableModalOverlay">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="timetableModalTitle">
+    <div class="modal-header">
+      <h2 class="modal-title" id="timetableModalTitle">Add Timetable Entry</h2>
+      <button type="button" class="modal-close" id="timetableModalClose" aria-label="Close">✕</button>
+    </div>
+
+    <form id="timetableForm" class="timetable-form" novalidate>
+      <input type="hidden" id="entryId" value="">
+
+      <div class="form-field">
+        <label for="entryDayOfWeek">Day of Week</label>
+        <select id="entryDayOfWeek" name="dayOfWeek" required>
+          <option value="MONDAY">Monday</option>
+          <option value="TUESDAY">Tuesday</option>
+          <option value="WEDNESDAY">Wednesday</option>
+          <option value="THURSDAY">Thursday</option>
+          <option value="FRIDAY">Friday</option>
+          <option value="SATURDAY">Saturday</option>
+          <option value="SUNDAY">Sunday</option>
+        </select>
+      </div>
+
+      <div class="form-field">
+        <label for="entrySubject">Subject</label>
+        <input type="text" id="entrySubject" name="subject" required placeholder="e.g. Physics">
+      </div>
+
+      <div class="form-field">
+        <label for="entryTeacher">Teacher</label>
+        <input type="text" id="entryTeacher" name="teacher" placeholder="e.g. Mr. Khan">
+      </div>
+
+      <div class="form-row">
+        <div class="form-field">
+          <label for="entryStartTime">Start Time</label>
+          <input type="time" id="entryStartTime" name="startTime" required>
+        </div>
+
+        <div class="form-field">
+          <label for="entryEndTime">End Time</label>
+          <input type="time" id="entryEndTime" name="endTime" required>
+        </div>
+      </div>
+
+      <div class="form-field">
+        <label for="entryRoom">Room</label>
+        <input type="text" id="entryRoom" name="room" placeholder="e.g. Room 204">
+      </div>
+
+      <p class="form-error" id="timetableFormError"></p>
+
+      <div class="modal-actions">
+        <button type="button" class="secondary-btn" id="timetableCancelBtn">Cancel</button>
+        <button type="submit" class="primary-btn" id="timetableSaveBtn">Save Entry</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="/js/timetable.js"></script>
+</body>
+</html>

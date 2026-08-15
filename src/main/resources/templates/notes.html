@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes</title>
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/css/notes.css">
+</head>
+<body>
+
+<div class="dashboard-layout">
+
+    <!-- ============ SIDEBAR / NAVIGATION ============ -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <span class="sidebar-logo">🎓</span>
+            <span class="sidebar-title">StudentHub</span>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul>
+                <li>
+                    <a href="/dashboard" class="nav-link">
+                        <span class="nav-icon">🏠</span>
+                        <span class="nav-text">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/dashboard#assignments-section" class="nav-link">
+                        <span class="nav-icon">📝</span>
+                        <span class="nav-text">Assignments</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/timetable" class="nav-link">
+                        <span class="nav-icon">🗓️</span>
+                        <span class="nav-text">Timetable</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/notes" class="nav-link active">
+                        <span class="nav-icon">📁</span>
+                        <span class="nav-text">Notes / Documents</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/ai-assistant" class="nav-link">
+                        <span class="nav-icon">🤖</span>
+                        <span class="nav-text">AI Assistant</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button type="button" id="logoutBtn" class="logout-btn">
+                <span class="nav-icon">🚪</span>
+                <span class="nav-text">Logout</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- ============ MAIN CONTENT ============ -->
+    <div class="main-content">
+
+        <header class="topbar">
+            <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">☰</button>
+            <div class="topbar-right">
+                <div class="user-menu">
+                    <button type="button" class="user-menu-trigger" id="userMenuTrigger" aria-haspopup="true" aria-expanded="false">
+                        <span class="user-name" id="userName">Student</span>
+                        <span class="user-avatar">👤</span>
+                    </button>
+                    <div class="user-menu-dropdown" id="userMenuDropdown">
+                        <button type="button" id="topbarLogoutBtn" class="user-menu-logout-btn">
+                            <span class="nav-icon">🚪</span>
+                            <span>Logout</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="content-area">
+            <div class="section-header">
+                <h1 class="section-title">Notes</h1>
+                <button type="button" class="primary-btn" id="addNoteBtn">+ Add Note</button>
+            </div>
+            <p class="section-subtitle">Create, search, and manage your notes and documents.</p>
+
+            <div class="notes-search-bar">
+                <input type="text" id="notesSearchInput" placeholder="Search notes by title...">
+                <button type="button" class="secondary-btn" id="notesSearchBtn">Search</button>
+                <button type="button" class="secondary-btn" id="notesSearchClearBtn">Clear</button>
+            </div>
+
+            <div id="notesListContainer" class="notes-list-container">
+                <p class="placeholder-text" id="notesEmptyState">No notes yet. Click "+ Add Note" to create one.</p>
+            </div>
+        </main>
+    </div>
+</div>
+
+<!-- Add / Edit Note Modal -->
+<div class="modal-overlay" id="noteModalOverlay">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="noteModalTitle">
+        <div class="modal-header">
+            <h2 class="modal-title" id="noteModalTitle">Add Note</h2>
+            <button type="button" class="modal-close" id="noteModalClose" aria-label="Close">✕</button>
+        </div>
+
+        <form id="noteForm" class="note-form" novalidate>
+            <input type="hidden" id="noteId" value="">
+
+            <div class="form-field">
+                <label for="noteTitle">Title</label>
+                <input type="text" id="noteTitle" name="title" required placeholder="e.g. Chapter 4 Summary">
+            </div>
+
+            <div class="form-field">
+                <label for="noteSubject">Subject</label>
+                <input type="text" id="noteSubject" name="subject" required placeholder="e.g. Biology">
+            </div>
+
+            <div class="form-field">
+                <label for="noteContent">Content</label>
+                <textarea id="noteContent" name="content" rows="8" required placeholder="Write your note here..."></textarea>
+            </div>
+
+            <p class="form-error" id="noteFormError"></p>
+
+            <div class="modal-actions">
+                <button type="button" class="secondary-btn" id="noteCancelBtn">Cancel</button>
+                <button type="submit" class="primary-btn" id="noteSaveBtn">Save Note</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- View Note Modal (read-only) -->
+<div class="modal-overlay" id="noteViewOverlay">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="noteViewTitle">
+        <div class="modal-header">
+            <h2 class="modal-title" id="noteViewTitle">Note</h2>
+            <button type="button" class="modal-close" id="noteViewClose" aria-label="Close">✕</button>
+        </div>
+
+        <div class="note-view-body">
+            <span class="note-view-subject" id="noteViewSubject"></span>
+            <span class="note-view-date" id="noteViewDate"></span>
+            <p class="note-view-content" id="noteViewContent"></p>
+        </div>
+    </div>
+</div>
+
+<script src="/js/notes.js"></script>
+</body>
+</html>

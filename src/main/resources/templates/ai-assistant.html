@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Assistant</title>
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/css/ai-assistant.css">
+</head>
+<body>
+
+<div class="dashboard-layout">
+
+    <!-- ============ SIDEBAR / NAVIGATION ============ -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <span class="sidebar-logo">🎓</span>
+            <span class="sidebar-title">StudentHub</span>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul>
+                <li>
+                    <a href="/dashboard" class="nav-link">
+                        <span class="nav-icon">🏠</span>
+                        <span class="nav-text">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/dashboard#assignments-section" class="nav-link">
+                        <span class="nav-icon">📝</span>
+                        <span class="nav-text">Assignments</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/timetable" class="nav-link">
+                        <span class="nav-icon">🗓️</span>
+                        <span class="nav-text">Timetable</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/notes" class="nav-link">
+                        <span class="nav-icon">📁</span>
+                        <span class="nav-text">Notes / Documents</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/ai-assistant" class="nav-link active">
+                        <span class="nav-icon">🤖</span>
+                        <span class="nav-text">AI Assistant</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button type="button" id="logoutBtn" class="logout-btn">
+                <span class="nav-icon">🚪</span>
+                <span class="nav-text">Logout</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- ============ MAIN CONTENT ============ -->
+    <div class="main-content">
+
+        <header class="topbar">
+            <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">☰</button>
+            <div class="topbar-right">
+                <div class="user-menu">
+                    <button type="button" class="user-menu-trigger" id="userMenuTrigger" aria-haspopup="true" aria-expanded="false">
+                        <span class="user-name" id="userName">Student</span>
+                        <span class="user-avatar">👤</span>
+                    </button>
+                    <div class="user-menu-dropdown" id="userMenuDropdown">
+                        <button type="button" id="topbarLogoutBtn" class="user-menu-logout-btn">
+                            <span class="nav-icon">🚪</span>
+                            <span>Logout</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="content-area ai-content-area">
+            <div class="section-header">
+                <h1 class="section-title">AI Assistant</h1>
+                <button type="button" class="icon-btn" id="speakToggleBtn" aria-label="Toggle voice replies" title="Toggle voice replies">🔊</button>
+            </div>
+            <p class="section-subtitle">Ask a question and get an explanation. You can type or use the mic.</p>
+
+            <div class="chat-panel">
+                <div class="chat-window" id="chatWindow">
+                    <div class="chat-message ai">
+                        <div class="chat-bubble">Hi! Ask me anything about your coursework..</div>
+                    </div>
+                </div>
+
+                <form class="chat-input-row" id="chatForm">
+                    <button type="button" class="icon-btn mic-btn" id="micBtn" aria-label="Speak your question" title="Speak your question">🎤</button>
+                    <input type="text" id="questionInput" placeholder="Type your question..." autocomplete="off" required>
+                    <button type="submit" class="primary-btn" id="sendBtn">Send</button>
+                </form>
+            </div>
+        </main>
+    </div>
+</div>
+
+<script src="/js/ai-assistant.js"></script>
+</body>
+</html>

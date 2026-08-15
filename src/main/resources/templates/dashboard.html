@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+<body>
+
+<div class="dashboard-layout">
+
+    <!-- ============ SIDEBAR / NAVIGATION ============ -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <span class="sidebar-logo">🎓</span>
+            <span class="sidebar-title">StudentHub</span>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul>
+                <li>
+                    <a href="#home-section" class="nav-link active" data-section="home-section">
+                        <span class="nav-icon">🏠</span>
+                        <span class="nav-text">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#assignments-section" class="nav-link" data-section="assignments-section">
+                        <span class="nav-icon">📝</span>
+                        <span class="nav-text">Assignments</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/timetable" class="nav-link">
+                        <span class="nav-icon">🗓️</span>
+                        <span class="nav-text">Timetable</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/notes" class="nav-link">
+                        <span class="nav-icon">📁</span>
+                        <span class="nav-text">Notes / Documents</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/ai-assistant" class="nav-link">
+                        <span class="nav-icon">🤖</span>
+                        <span class="nav-text">AI Assistant</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button type="button" id="logoutBtn" class="logout-btn">
+                <span class="nav-icon">🚪</span>
+                <span class="nav-text">Logout</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- ============ MAIN CONTENT ============ -->
+    <div class="main-content">
+
+        <!-- Top bar -->
+        <header class="topbar">
+            <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">☰</button>
+            <div class="topbar-right">
+                <div class="user-menu">
+                    <button type="button" class="user-menu-trigger" id="userMenuTrigger" aria-haspopup="true" aria-expanded="false">
+                        <span class="user-name" id="userName">Student</span>
+                        <span class="user-avatar">👤</span>
+                    </button>
+                    <div class="user-menu-dropdown" id="userMenuDropdown">
+                        <button type="button" id="topbarLogoutBtn" class="user-menu-logout-btn">
+                            <span class="nav-icon">🚪</span>
+                            <span>Logout</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="content-area">
+
+
+            <section id="home-section" class="content-section active-section">
+                <h1 class="section-title">Welcome back 👋</h1>
+                <p class="section-subtitle">Here's a quick overview of your student workspace.</p>
+
+                <div class="overview-cards">
+                    <div class="overview-card">
+                        <span class="card-icon">📝</span>
+                        <div class="card-info">
+                            <span class="card-label">Upcoming Assignments</span>
+                            <span class="card-value" id="assignmentsCount">--</span>
+                        </div>
+                    </div>
+                    <div class="overview-card">
+                        <span class="card-icon">🗓️</span>
+                        <div class="card-info">
+                            <span class="card-label">Today's Classes</span>
+                            <span class="card-value" id="todaysClassesCount">--</span>
+                        </div>
+                    </div>
+                    <div class="overview-card">
+                        <span class="card-icon">📁</span>
+                        <div class="card-info">
+                            <span class="card-label">Notes</span>
+                            <span class="card-value" id="notesCount">--</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick access into the actual feature sections -->
+                <div class="quick-access">
+                    <h2 class="quick-access-title">Quick Access</h2>
+                    <div class="quick-access-links">
+                        <a href="#assignments-section" class="quick-access-card" data-section="assignments-section">
+                            <span class="card-icon">📝</span>
+                            <span class="nav-text">Assignments</span>
+                        </a>
+                        <a href="/timetable" class="quick-access-card">
+                            <span class="card-icon">🗓️</span>
+                            <span class="nav-text">Timetable</span>
+                        </a>
+                        <a href="/notes" class="quick-access-card">
+                            <span class="card-icon">📁</span>
+                            <span class="nav-text">Notes / Documents</span>
+                        </a>
+                        <a href="/ai-assistant" class="quick-access-card">
+                            <span class="card-icon">🤖</span>
+                            <span class="nav-text">AI Assistant</span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+
+            <section id="assignments-section" class="content-section">
+                <div class="section-header">
+                    <h1 class="section-title">Assignments</h1>
+                    <button type="button" class="primary-btn" id="addAssignmentBtn">+ Add Assignment</button>
+                </div>
+                <p class="section-subtitle">Track, add, and manage your assignments here.</p>
+
+                <div id="assignmentsListContainer" class="assignments-list-container">
+                    <!-- Assignment cards are rendered here by dashboard.js -->
+                    <p class="placeholder-text" id="assignmentsEmptyState">No assignments yet. Click "+ Add Assignment" to create one.</p>
+                </div>
+            </section>
+
+        </main>
+    </div>
+</div>
+
+
+<div class="modal-overlay" id="assignmentModalOverlay">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="assignmentModalTitle">
+        <div class="modal-header">
+            <h2 class="modal-title" id="assignmentModalTitle">Add Assignment</h2>
+            <button type="button" class="modal-close" id="assignmentModalClose" aria-label="Close">✕</button>
+        </div>
+
+        <form id="assignmentForm" class="assignment-form" novalidate>
+            <input type="hidden" id="assignmentId" value="">
+
+            <div class="form-field">
+                <label for="assignmentTitle">Title</label>
+                <input type="text" id="assignmentTitle" name="title" required placeholder="e.g. Physics Lab Report">
+            </div>
+
+            <div class="form-field">
+                <label for="assignmentSubject">Subject</label>
+                <input type="text" id="assignmentSubject" name="subject" required placeholder="e.g. Physics">
+            </div>
+
+            <div class="form-field">
+                <label for="assignmentDescription">Description</label>
+                <textarea id="assignmentDescription" name="description" rows="3" placeholder="Optional details..."></textarea>
+            </div>
+
+            <div class="form-row">
+                <div class="form-field">
+                    <label for="assignmentDueDate">Due Date</label>
+                    <input type="date" id="assignmentDueDate" name="dueDate" required>
+                </div>
+
+                <div class="form-field">
+                    <label for="assignmentStatus">Status</label>
+                    <select id="assignmentStatus" name="status" required>
+                        <option value="NOT_STARTED">Not Started</option>
+                        <option value="IN_PROGRESS">In Progress</option>
+                        <option value="COMPLETED">Completed</option>
+                    </select>
+                </div>
+            </div>
+
+            <p class="form-error" id="assignmentFormError"></p>
+
+            <div class="modal-actions">
+                <button type="button" class="secondary-btn" id="assignmentCancelBtn">Cancel</button>
+                <button type="submit" class="primary-btn" id="assignmentSaveBtn">Save Assignment</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="/js/dashboard.js"></script>
+</body>
+</html>
